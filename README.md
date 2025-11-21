@@ -50,7 +50,36 @@ Organiser le projet avec une approche orientée objet pour rendre le corpus évo
    - **Factory** : générer des documents selon leur type (Reddit ou Arxiv).
 
  **Résultat** : un corpus enrichi, extensible et mieux structuré, prêt pour les analyses avancées.
+ ## TD 6 : Analyse du contenu textuel
+  - Mettre en pratique l’utilisation des expressions régulières **(re)** pour analyser le contenu textuel.
 
+ - Implémenter une fonction **search** dans la classe Corpus afin de retrouver les passages contenant un mot‑clé.
+
+ - Construire un **concordancier (concorde)** qui affiche le contexte gauche et droit autour d’un motif trouvé.
+
+ - Nettoyer les textes **(nettoyer_texte)** pour uniformiser le corpus :
+
+ - mise en minuscules, suppression des chiffres, ponctuations et retours à la ligne.
+
+ - Construire un vocabulaire des mots du corpus en supprimant les doublons.
+
+ - Calculer des statistiques lexicales :
+
+     - nombre de mots différents,
+
+     - fréquence des mots,
+
+     - fréquence documentaire.
+
+## TD7 : Moteur de recherche en Python
+### Objectifs
+- La construction d’un **vocabulaire** (mots uniques du corpus, avec identifiant, fréquence et document frequency(voir TD6)).
+
+- La création d’une **matrice Documents × Termes (TF et TF×IDF)**.
+
+ - Une recherche basée sur la **similarité cosinus** entre la requête et les documents.
+
+ - Une classe **SearchEngine** qui prend un Corpus en entrée et retourne les résultats sous forme de DataFrame.
 
 ---
 ## Prérequis
@@ -69,12 +98,17 @@ python_project/
 │   ├── reddit_arxiv.py   # récupération des textes
 │   ├── corpus_builder.py  # construction, chargement et analyse
 │   ├── main_td3.py        # test
-├── TD4_4__5/
+├── TD_4_5_6/
+│   ├── __init__.py # fichier vide     
 │   ├── Document.py       # classe Document
 │   ├── Author.py         # classe Author
 │   ├── corpus.py         # classe Corpus
 │   ├── Factory.py        # gere les type
-│   ├── mains.py          # test
+│   ├── main_td6.py          # test
+├── TD_7/
+│   ├── __init__.py # fichier vide     
+│   ├── SearchEngine.py       # classe moteur de recherche
+│   ├── main_td7.py # test    
 ├── Data/                 # corpus sauvegardé
 │   ├── corpus.csv
 ├── README.md             # ce fichier
@@ -91,4 +125,5 @@ cd Projet_TP_Python
 ## Version
 
 - Version **v1** : comprend TD3, TD4 et TD5
+-  Version **v2** : comprend TD3, TD4, TD5, TD6 et TD7
 
