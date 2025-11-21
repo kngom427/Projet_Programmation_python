@@ -1,44 +1,56 @@
 # Projets en Programmation de Spécialité : Python
-👨‍💻 Réalisé par Khadim & Saliou – Master 1 Informatique, Lyon 2
+👨‍💻 Réalisé par Khadim NGOM & Serigne Saliou THIAM – Master 1 Informatique, Lyon 2
 
-Dans le cadre de ce projet, j’ai développé un programme en Python en suivant l’ensemble des étapes du cycle de vie logiciel : la spécification, l’analyse, la conception, le codage, la vérification et la maintenance. Ce travail m’a permis de mettre en pratique mes compétences en programmation et de démontrer ma capacité à concevoir une application complète, bien structurée et évolutive.
+Dans le cadre de ce projet, On a développé un programme en Python en suivant l’ensemble des étapes du cycle de vie logiciel : la spécification, l’analyse, la conception, le codage, la vérification et la maintenance. Ce travail nous a  permis de mettre en pratique nos compétences en programmation et de démontrer notre capacité à concevoir une application complète, bien structurée et évolutive.
 Le projet s’appuie sur les TD 3 à 10, dont les deux derniers offrent davantage de liberté dans la conception. Le rendu se fait en trois versions successives, chacune représentant une étape d’évolution et d’amélioration du projet.
-## TD 3 : acquisition de données (version 1)
+## TD 3 : acquisition de données 
 ### Objectifs:
-#### Partie 1 — Collecte des données
-**But** : extraire des documents textuels à partir de sources externes (APIs).
+Construire un premier corpus textuel à partir de sources externes **(Reddit et Arxiv)**, le nettoyer et le sauvegarder pour éviter de réinterroger les APIs.
 
-1.1 Interroger Reddit avec la librairie praw pour récupérer le champ textuel selftext.
+- Collecte des textes via praw (Reddit) et urllib/xmltodict (Arxiv).
 
-1.2 Interroger Arxiv avec urllib et parser les résultats XML avec xmltodict.
+- Nettoyage des contenus (\n, textes trop courts).
 
-1.3 Nettoyer les textes (supprimer les \n).
+- Structuration dans un DataFrame avec id, texte, source.
 
-1.4 Alimenter une liste Python docs contenant uniquement le contenu textuel des documents.
-#### Partie 2 — Construction et sauvegarde du corpus
-**But** : éviter de réinterroger les APIs à chaque exécution.
+- Sauvegarde au format .csv et possibilité de rechargement.
 
-2.1 Créer un DataFrame pandas avec trois colonnes :
+ **Résultat** : un corpus brut mais exploitable, prêt pour les étapes suivantes.
 
-id → identifiant unique du document
+## TD 4 : Structuration orientée objet
+### Objectifs : 
+Organiser le projet avec une approche orientée objet pour rendre le corpus évolutif et maintenable.
 
-texte → contenu textuel du document
+- Création de la classe **Document** (titre, auteur, date, url, texte).
 
-source → origine du texte (reddit ou arxiv)
+- Création de la classe **Author** (nom, nombre de documents, dictionnaire de production).
 
-2.2 Sauvegarder ce tableau sur disque au format .csv avec le séparateur de tabulation \t.
+- Création de la classe **Corpus** (nom, auteurs, documents, méthodes d’affichage et de gestion).
 
-2.3 Ajouter du code permettant de recharger directement ce fichier lors d’une prochaine exécution, sans repasser par les appels API
-#### Partie 3 — Premières manipulations du corpus
-**But** : explorer et préparer les données textuelles.
+**Résultat** : une architecture claire, avec des objets pour représenter les documents, les auteurs et le corpus.
 
-3.1 Afficher la taille du corpus (nombre de documents).
+ ## TD 5 : Héritage et patrons de conception
+ ### Objectifs
+ Enrichir le projet en introduisant l’héritage et des patrons de conception pour gérer différents types de documents et améliorer la flexibilité du corpus.
 
-3.2 Calculer, pour chaque document, le nombre de mots et de phrases (avec split(" ") et split(".")).
+ - Création de deux classes filles :
 
-3.3 Supprimer les documents trop courts (< 20 caractères).
+    - **RedditDocument** : hérite de Document et ajoute un     champ spécifique (ex. nombre de commentaires).
 
-3.4 Fusionner tous les textes en une seule chaîne de caractères (" ".join(...)) pour une analyse globale.
+    - **ArxivDocument** : hérite de Document et ajoute la gestion des co-auteurs.
+
+- Mise à jour de la classe Corpus pour accueillir ces nouveaux types de documents grâce au polymorphisme.
+
+- Ajout d’un champ type et d’une méthode getType() pour identifier la source (Reddit ou Arxiv).
+
+- Mise en place de deux patrons de conception :
+
+   - **Singleton** : garantir qu’un seul corpus est manipulé.
+
+   - **Factory** : générer des documents selon leur type (Reddit ou Arxiv).
+
+ **Résultat** : un corpus enrichi, extensible et mieux structuré, prêt pour les analyses avancées.
+
 
 ---
 ## Prérequis
@@ -53,15 +65,29 @@ pip install -r requirements.txt
 ## strucure du Projet
 ```bash
 python_project/
-├── td3/
-│   ├── reddit_arxiv.py # recupération des textes
-│   ├── corpus.py # construction et chargement du corpus
-│   ├── analyze.py # analyse du corpus
-├── main.py # fichier principale
-├── data/  # corpus sauvegardé
-├── README.md  # ce fichier
-├── requirements.txt # librairies necesssaires
+├── TD_3/
+│   ├── reddit_arxiv.py   # récupération des textes
+│   ├── corpus_builder.py  # construction, chargement et analyse
+│   ├── main_td3.py        # test
+├── TD4_4__5/
+│   ├── Document.py       # classe Document
+│   ├── Author.py         # classe Author
+│   ├── corpus.py         # classe Corpus
+│   ├── Factory.py        # gere les type
+│   ├── mains.py          # test
+├── Data/                 # corpus sauvegardé
+│   ├── corpus.csv
+├── README.md             # ce fichier
+├── requirements.txt      # librairies nécessaires
+
 ```
+## Comment exécuter
+### Cloner le projet
+```bash
+git clone https://github.com/kngom427/Projet_Programmation_python.git
+cd Projet_TP_Python
+```
+
 ## Version
 
 - Version **v1** : comprend TD3, TD4 et TD5

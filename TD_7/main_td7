@@ -1,0 +1,13 @@
+from TD_4_5_6.Corpus import Corpus
+from SearchEngine import SearchEngine
+
+#Charger ton corpus
+corpus = Corpus("Corpus TD7")
+corpus.load_csv("Data\\corpus.csv")
+
+# Créer le moteur de recherche
+engine = SearchEngine(corpus)
+
+# Faire une recherche
+df_results = engine.search("artificial intelligence", k=3)
+print(df_results)
