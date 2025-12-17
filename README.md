@@ -31,7 +31,7 @@ Le projet a été développé de manière incrémentale à travers les **TD 3 à
 📅 Année universitaire : **2025–2026**
 
 🔗 Dépôt GitHub :
-[https://github.com/SaliouThiam/Moteur-de-recherche](https://github.com/SaliouThiam/Moteur-de-recherche)
+[https://github.com/kngom427/Projet_Programmation_python]
 
 ---
 
